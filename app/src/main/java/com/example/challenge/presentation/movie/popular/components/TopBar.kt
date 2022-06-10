@@ -15,8 +15,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.challenge.presentation.movie.destinations.FavoriteScreenDestination
-import com.example.challenge.presentation.movie.destinations.SearchScreenDestination
+import com.example.challenge.presentation.destinations.FavoriteScreenDestination
+import com.example.challenge.presentation.destinations.SearchScreenDestination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
 @Composable

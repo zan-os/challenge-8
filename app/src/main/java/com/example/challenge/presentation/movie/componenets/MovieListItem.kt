@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
 import com.example.challenge.domain.model.Movie
-import com.example.challenge.presentation.movie.destinations.DetailMovieScreenDestination
+import com.example.challenge.presentation.destinations.DetailMovieScreenDestination
 import com.example.challenge.presentation.ui.theme.grey
 import com.example.challenge.presentation.ui.theme.orange
 import com.example.challenge.utils.Extensions.baseImageUrl

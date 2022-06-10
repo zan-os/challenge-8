@@ -10,7 +10,6 @@ import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
-import com.example.challenge.presentation.movie.NavGraphs
 import com.example.challenge.presentation.ui.theme.ChallengeTheme
 import com.example.challenge.presentation.ui.theme.blueNight
 import com.ramcosta.composedestinations.DestinationsNavHost
