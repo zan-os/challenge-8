@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import com.example.challenge.data.local.room.MovieDatabase
 import com.example.challenge.data.local.room.dao.FavoriteDao
+import com.example.challenge.data.local.room.dao.UserDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -25,5 +26,10 @@ object DatabaseModule {
     @Provides
     fun provideFavoriteDao(database: MovieDatabase): FavoriteDao {
         return database.favoriteDao()
+    }
+
+    @Provides
+    fun provideUserDao(database: MovieDatabase): UserDao {
+        return database.userDao()
     }
 }

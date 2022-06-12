@@ -6,10 +6,10 @@ import androidx.lifecycle.*
 import com.example.challenge.data.resource.Resource
 import com.example.challenge.domain.model.Favorite
 import com.example.challenge.domain.model.Movie
-import com.example.challenge.domain.usecase.addfavorite.AddFavoriteUseCase
-import com.example.challenge.domain.usecase.deletefavorite.DeleteFavoriteUseCase
-import com.example.challenge.domain.usecase.detailmovie.DetailMovieUseCase
-import com.example.challenge.domain.usecase.observefavoritebyid.ObserveFavoriteUseByIdCaseById
+import com.example.challenge.domain.usecase.movie.addfavorite.AddFavoriteUseCase
+import com.example.challenge.domain.usecase.movie.deletefavorite.DeleteFavoriteUseCase
+import com.example.challenge.domain.usecase.movie.detailmovie.DetailMovieUseCase
+import com.example.challenge.domain.usecase.movie.observefavoritebyid.ObserveFavoriteUseByIdCaseById
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach

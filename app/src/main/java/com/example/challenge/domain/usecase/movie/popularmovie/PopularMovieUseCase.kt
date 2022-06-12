@@ -1,4 +1,4 @@
-package com.example.challenge.domain.usecase.searchmovie
+package com.example.challenge.domain.usecase.movie.popularmovie
 
 import android.util.Log
 import com.example.challenge.data.remote.dto.toMovie
@@ -11,13 +11,13 @@ import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject
 
-class SearchMovieUseCase @Inject constructor(
+class PopularMovieUseCase @Inject constructor(
     private val repository: MovieRepository
 ) {
-    operator fun invoke(query: String): Flow<Resource<List<Movie>>> = flow {
+    operator fun invoke(): Flow<Resource<List<Movie>>> = flow {
         try {
             emit(Resource.Loading())
-            val movies = repository.searchMovie(query).map { it.toMovie() }
+            val movies = repository.getMovie().map { it.toMovie() }
             Log.d("photos", movies.toString())
             emit(Resource.Success(movies))
         } catch (e: HttpException) {

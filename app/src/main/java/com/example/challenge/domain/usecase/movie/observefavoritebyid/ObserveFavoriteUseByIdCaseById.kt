@@ -1,4 +1,4 @@
-package com.example.challenge.domain.usecase.observefavoritebyid
+package com.example.challenge.domain.usecase.movie.observefavoritebyid
 
 import com.example.challenge.data.resource.Resource
 import com.example.challenge.domain.model.Favorite

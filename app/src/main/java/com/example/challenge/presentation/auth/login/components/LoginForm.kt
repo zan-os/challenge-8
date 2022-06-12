@@ -1,5 +1,6 @@
 package com.example.challenge.presentation.auth.login.components
 
+import android.content.Context
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -14,17 +15,28 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.challenge.presentation.auth.login.LoginViewModel
 import com.example.challenge.presentation.destinations.LoginScreenDestination
+import com.example.challenge.presentation.destinations.PopularScreenDestination
+import com.example.challenge.presentation.destinations.RegisterScreenDestination
 import com.example.challenge.presentation.ui.theme.orange
+import com.example.challenge.utils.Extensions.showLongToast
+import com.ramcosta.composedestinations.annotation.RootNavGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
 @Composable
-fun LoginForm(navigator: DestinationsNavigator) {
-    var emailText by rememberSaveable { mutableStateOf("") }
-    var passwordText by rememberSaveable { mutableStateOf("") }
+fun LoginForm(
+    navigator: DestinationsNavigator,
+    viewModel: LoginViewModel = hiltViewModel()
+) {
+    var email by rememberSaveable { mutableStateOf("") }
+    var password by rememberSaveable { mutableStateOf("") }
+    val context = LocalContext.current
     Column(
         verticalArrangement = Arrangement.Center,
         modifier = Modifier
@@ -32,8 +44,8 @@ fun LoginForm(navigator: DestinationsNavigator) {
             .fillMaxSize()
     ) {
         TextField(
-            value = emailText,
-            onValueChange = { emailText = it },
+            value = email,
+            onValueChange = { email = it },
             placeholder = { Text(text = "Email", fontSize = 16.sp) },
             singleLine = true,
             leadingIcon = { Icon(Icons.Default.Email, contentDescription = "Search") },
@@ -52,8 +64,8 @@ fun LoginForm(navigator: DestinationsNavigator) {
 
         )
         TextField(
-            value = passwordText,
-            onValueChange = { passwordText = it },
+            value = password,
+            onValueChange = { password = it },
             placeholder = { Text(text = "Password", fontSize = 16.sp) },
             singleLine = true,
             leadingIcon = { Icon(Icons.Default.Lock, contentDescription = "Search") },
@@ -71,15 +83,24 @@ fun LoginForm(navigator: DestinationsNavigator) {
         )
         Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
             Text(
-                modifier = Modifier.padding(top = 8.dp)
-                    .clickable { navigator.navigate(LoginScreenDestination)},
+                modifier = Modifier
+                    .padding(top = 8.dp)
+                    .clickable { navigator.navigate(RegisterScreenDestination) },
                 text = "Buat akun",
                 fontSize = 18.sp,
                 color = Color.White
             )
             Button(
                 modifier = Modifier.padding(top = 8.dp),
-                onClick = { },
+                onClick = {
+                    loginUser(
+                        email = email,
+                        password = password,
+                        context = context,
+                        navigator = navigator,
+                        viewModel = viewModel
+                    )
+                },
                 colors = ButtonDefaults.buttonColors(
                     orange
                 )
@@ -87,5 +108,22 @@ fun LoginForm(navigator: DestinationsNavigator) {
                 Text(text = "Login")
             }
         }
+    }
+}
+
+private fun loginUser(
+    email: String,
+    password: String,
+    context: Context,
+    navigator: DestinationsNavigator,
+    viewModel: LoginViewModel
+) {
+    val state = viewModel.state.value
+    viewModel.login(email, password)
+    if (state.result) {
+        context.showLongToast("Login berhasil")
+        navigator.navigate(PopularScreenDestination)
+    } else if (state.error.isNotEmpty()) {
+        context.showLongToast(state.error)
     }
 }

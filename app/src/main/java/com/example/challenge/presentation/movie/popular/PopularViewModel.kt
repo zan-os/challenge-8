@@ -5,7 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.challenge.data.resource.Resource
-import com.example.challenge.domain.usecase.popularmovie.PopularMovieUseCase
+import com.example.challenge.domain.usecase.movie.popularmovie.PopularMovieUseCase
 import com.example.challenge.utils.MovieState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn

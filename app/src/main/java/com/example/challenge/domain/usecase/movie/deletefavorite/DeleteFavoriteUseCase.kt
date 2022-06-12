@@ -1,4 +1,4 @@
-package com.example.challenge.domain.usecase.deletefavorite
+package com.example.challenge.domain.usecase.movie.deletefavorite
 
 import com.example.challenge.data.resource.Resource
 import com.example.challenge.domain.repository.MovieRepository

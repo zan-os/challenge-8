@@ -1,28 +1,23 @@
-@file:Suppress("SpellCheckingInspection"
-)
+package com.example.challenge.domain.usecase.movie.observerfavorite
 
-package com.example.challenge.domain.usecase.addfavorite
-
+import com.example.challenge.data.local.entity.toMovie
 import com.example.challenge.data.resource.Resource
 import com.example.challenge.domain.model.Movie
-import com.example.challenge.domain.model.toFavoriteEntity
 import com.example.challenge.domain.repository.MovieRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
-class AddFavoriteUseCase @Inject constructor(
+class ObserveFavoriteMovieUseCase @Inject constructor(
     private val repository: MovieRepository
 ) {
-    operator fun invoke(movie: Movie): Flow<Resource<Unit>> = flow {
+    operator fun invoke(): Flow<Resource<List<Movie>>> = flow {
         try {
             emit(Resource.Loading())
-            val favoriteEntity = movie.toFavoriteEntity()
-            val data = repository.addFavoriteMovie(favoriteEntity)
-            emit(Resource.Success(data))
+            val movie = repository.observeFavoriteMovie().map { it.toMovie() }
+            emit(Resource.Success(movie))
         } catch (e: Exception) {
             emit(Resource.Error(e.localizedMessage ?: "An unexpected error occured"))
         }
     }
-
 }

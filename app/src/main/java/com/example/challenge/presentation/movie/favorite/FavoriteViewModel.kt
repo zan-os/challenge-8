@@ -5,7 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.challenge.data.resource.Resource
-import com.example.challenge.domain.usecase.observerfavorite.ObserveFavoriteMovieUseCase
+import com.example.challenge.domain.usecase.movie.observerfavorite.ObserveFavoriteMovieUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach

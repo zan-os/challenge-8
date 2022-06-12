@@ -1,4 +1,4 @@
-package com.example.challenge.domain.usecase.detailmovie
+package com.example.challenge.domain.usecase.movie.detailmovie
 
 import com.example.challenge.data.remote.dto.toDetail
 import com.example.challenge.data.resource.Resource
